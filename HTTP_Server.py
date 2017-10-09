@@ -9,6 +9,7 @@ from threading import *
 #globals
 threadArray = []
 
+# Variable to specify which port will be listened to
 portNumber = 8000
 
 def main():
@@ -30,8 +31,10 @@ def main():
 
 def startServer():
 
-	#prepre socket
+	#prepare socket
 	serverSocket = socket(AF_INET, SOCK_STREAM)
+
+	# Listens in to the specified port number
 	serverSocket.bind((gethostname(), portNumber))
 	serverSocket.listen(1)
 
