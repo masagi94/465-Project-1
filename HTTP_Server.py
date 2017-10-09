@@ -1,4 +1,5 @@
 #Hamza Tanveer
+#Mauricio Salazar Giraldo
 #ECE 465 Project 1
 
 #import socket module
