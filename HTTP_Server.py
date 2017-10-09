@@ -1,6 +1,6 @@
 #Hamza Tanveer
 #Mauricio Salazar Giraldo
-#ECE 465 Project 1
+#Fall 2017 - ECE 465 Project 1
 
 #import socket module
 from socket import *
