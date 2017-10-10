@@ -11,8 +11,6 @@ from threading import *
 #globals
 threadArray = []
 
-# Variable to specify which port will be listened to
-#portNumber = 8000
 
 def main():
 
