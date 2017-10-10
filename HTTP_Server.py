@@ -2,6 +2,8 @@
 #Mauricio Salazar Giraldo
 #Fall 2017-ECE 465 Project 1
 
+import sys
+import socket
 #import socket module
 from socket import *
 from threading import *
@@ -10,9 +12,10 @@ from threading import *
 threadArray = []
 
 # Variable to specify which port will be listened to
-portNumber = 8000
+#portNumber = 8000
 
 def main():
+
 	mainThread = Thread(target = startServer, name = 'ServerThread')
 	mainThread.setDaemon(True)
 	threadArray.append(mainThread)
@@ -31,6 +34,9 @@ def main():
 
 def startServer():
 
+	if len(sys.argv) == 2: #take in 2 command line args
+			portNumber = int(sys.argv[1]) #argv[1] b/c arg 0 and arg 1
+	
 	#prepare socket
 	serverSocket = socket(AF_INET, SOCK_STREAM)
 
