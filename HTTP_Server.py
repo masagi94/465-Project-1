@@ -38,8 +38,8 @@ def startServer():
 	serverSocket.bind((gethostname(), portNumber))
 	serverSocket.listen(1)
 
-	serverIp = gethostbyname(gethostname())
-	print("Server IP: " + serverIp)
+	clientIP = gethostbyname(gethostname())
+	print("Client IP: " + clientIP)
 	print("Press CTRL + c to exit.\n")
 
 
