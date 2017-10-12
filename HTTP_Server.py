@@ -14,18 +14,11 @@ portNumber = 0
 
 def main():
 	
-	if len(sys.argv) == 2: #take in 2 command line args
-			portNumber = int(sys.argv[1]) #argv[1] b/c arg 0 and arg 1
-	else:
-			print '\n Error:     Missing port number.\n Usage:     HTTP_Server.py <port number>'
-			return
-	
-
 	mainThread = Thread(target = startServer, name = 'ServerThread')
 	mainThread.setDaemon(True)
 	threadArray.append(mainThread)
 	threadArray[0].start()
-	print("\nServer thread initiated.")
+	print("Server thread initiated.")
 
 	serverQuit = False
 
@@ -39,10 +32,6 @@ def main():
 
 def startServer():
 
-	
-    		
-
-	print("\nServer port: " + (sys.argv[1]))
 	#prepare socket
 	serverSocket = socket(AF_INET, SOCK_STREAM)
 
@@ -51,7 +40,7 @@ def startServer():
 	serverSocket.listen(1)
 
 	clientIP = gethostbyname(gethostname())
-	print("Client IP: " + clientIP)
+	print("\nClient IP: " + clientIP)
 	print("Press CTRL + c to exit.\n")
 
 
@@ -89,4 +78,17 @@ def startConnectionThread(connectionSocket, addr):
 	#close client socket
 	connectionSocket.close()
 	
+
+
+if len(sys.argv) == 2: #take in 2 command line args
+	portNumber = int(sys.argv[1]) #argv[1] b/c arg 0 and arg 1
+	print("\nServer port: %d") % portNumber
+else:
+	print '\n Error:     Missing port number.\n Usage:     HTTP_Server.py <port number>'
+	sys.exit(0)
+
+
+
+
+
 main()
