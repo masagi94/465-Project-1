@@ -73,7 +73,8 @@ def startConnectionThread(connectionSocket, addr):
 
 	except IOError:
 		#send resp for file not found
-		connectionSocket.send("<! DOCTYPE><title><body><h1>404 File Not Found</h1></body></title>")
+		connectionSocket.send("HTTP/1.1 404 File Not Found\r\n")
+		#connectionSocket.send("<! DOCTYPE><title><body><h1>404 File Not Found</h1></body></title>")
 
 	#close client socket
 	connectionSocket.close()
