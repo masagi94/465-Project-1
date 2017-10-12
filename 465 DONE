@@ -1,26 +1,6 @@
 #Hamza Tanveer
 #Mauricio Salazar Giraldo
-#Fall 2017-ECE 465 Project 1
-
-"""
-To run the code, type: 
-	python HTTP_Server.py (desired port number)
-
-The client ip address will be printed out on the console. Open up a 
-web browser and type: 
-	http://(client ip address):(port number)/HelloWorld.html
-
-On the console, the thread number will print out, indicating the number of threads
-dealt with.
-
-Since it's multi-threaded, you may open different web browsers and re-type the URL
-and you should get the same output.
-
-If the inproper file name is typed, a "404 NOT FOUND" message will appear. If the
-correct file name is typed, "Hello World!" will print out.
-
-"""
-
+#Fall 2017 - ECE 465 Project 1
 
 import sys
 
@@ -29,13 +9,8 @@ from threading import *
 
 #globals
 threadArray = []
-portNumber = 0 #simply to instantiate the value, it will be overwritten later
-nextPortNumber = 0
+portNumber = 0
 
-
-'''
-Sets up the main thread, adds it to the array of threads
-'''
 def main():
 	
 	mainThread = Thread(target = startServer, name = 'ServerThread')
@@ -71,14 +46,12 @@ def startServer():
 	while True:
 		#establish connection
 		connectionSocket, addr = serverSocket.accept()
-		print >>sys.stderr, 'Connection from "Ip address", "New port number" :', addr
-		#serverSocket.bind((gethostname(), portNumber+1))
 		threadName = "Thread - " + str(len(threadArray))
 		newThread = Thread(target = startConnectionThread, name = (threadName), args = [connectionSocket, addr])
 
 
 		threadArray.append(newThread)
-		print("Number of threads:%d") %len(threadArray)
+		print("%s") % newThread
 		newThread.start()
 
 	serverSocket.close()
@@ -95,7 +68,8 @@ def startConnectionThread(connectionSocket, addr):
 
 		#send content of req file to client
 		for i in range (0,  len(outputdata)):
-			connectionSocket.send(outputdata[i])
+			connectionSocket.send(outputdata[i].encode())
+		connectionSocket.send("\r\n".encode())
 		connectionSocket.close()
 
 	except IOError:
