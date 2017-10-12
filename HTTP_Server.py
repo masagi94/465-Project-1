@@ -83,7 +83,7 @@ def startServer():
 
 
 		threadArray.append(newThread)
-		print("Number of threads:%d\n\n") %len(threadArray)
+		print("Number of threads: %d\n\n") %len(threadArray)
 		newThread.start()
 
 	serverSocket.close()
