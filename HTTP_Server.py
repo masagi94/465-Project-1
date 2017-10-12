@@ -18,7 +18,7 @@ def main():
 	mainThread.setDaemon(True)
 	threadArray.append(mainThread)
 	threadArray[0].start()
-	print("Server thread initiated.")
+	print("\nServer thread initiated.")
 
 	serverQuit = False
 
@@ -35,6 +35,7 @@ def startServer():
 	if len(sys.argv) == 2: #take in 2 command line args
 			portNumber = int(sys.argv[1]) #argv[1] b/c arg 0 and arg 1
 	
+	print("\nServer port: " + (sys.argv[1]))
 	#prepare socket
 	serverSocket = socket(AF_INET, SOCK_STREAM)
 
@@ -76,9 +77,9 @@ def startConnectionThread(connectionSocket, addr):
 
 	except IOError:
 		#send resp for file not found
-		connectionSocket.send("<!DOCTYPE html><html><body><h1>404 File Not Found</h1></body></html>")
+		connectionSocket.send("<! DOCTYPE><title><body><h1>404 File Not Found</h1></body></title>")
 
-		#close client socket
-		connectionSocket.close()
+	#close client socket
+	connectionSocket.close()
 	
 main()
