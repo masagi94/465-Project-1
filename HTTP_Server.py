@@ -17,7 +17,7 @@ def main():
 	if len(sys.argv) == 2: #take in 2 command line args
 			portNumber = int(sys.argv[1]) #argv[1] b/c arg 0 and arg 1
 	else:
-			print ' Missing port number. \n Usage:     HTTP_Server.py <port number>'
+			print '\n Error:     Missing port number.\n Usage:     HTTP_Server.py <port number>'
 			return
 	
 
