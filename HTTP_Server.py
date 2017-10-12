@@ -63,7 +63,8 @@ def startServer():
 	serverSocket.listen(1)
 
 	clientIP = gethostbyname(gethostname())
-	print("\nClient IP: " + clientIP)
+	print("Client IP: " + clientIP)
+	print("Ready to serve...\n")
 	print("Press CTRL + c to exit.\n")
 
 
@@ -97,11 +98,12 @@ def startConnectionThread(connectionSocket, addr):
 
 		#send 1 http header into socket
 		connectionSocket.send("HTTP/1.1 200 OK\r\n\r\n")
+		connectionSocket.send("<html><head></head><body><h1>Hello World!</h1></body></html>\r\n")
 
 		#send content of req file to client
-		for i in range (0,  len(outputdata)):
-			connectionSocket.send(outputdata[i])
-		connectionSocket.close()
+		#for i in range (0,  len(outputdata)):
+		#	connectionSocket.send(outputdata[i])
+		#connectionSocket.close()
 
 	except IOError:
 		#send resp for file not found
