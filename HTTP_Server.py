@@ -1,6 +1,6 @@
 #Hamza Tanveer
 #Mauricio Salazar Giraldo
-#Fall 2017-ECE 465 Project 1
+#Fall 2017 - ECE 465 Project 1
 
 import sys
 import socket
