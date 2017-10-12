@@ -3,8 +3,7 @@
 #Fall 2017 - ECE 465 Project 1
 
 import sys
-import socket
-#import socket module
+
 from socket import *
 from threading import *
 
@@ -64,7 +63,7 @@ def startConnectionThread(connectionSocket, addr):
 		outputdata = f.read()
 
 		#send 1 http header into socket
-		connectionSocket.send("HTTP/1.1 200 OK\r\nContent-type:text/html;charset=utf8\r\n\r\n")
+		connectionSocket.send("HTTP/1.1 200 OK\r\n\r\n")
 
 		#send content of req file to client
 		for i in range (0,  len(outputdata)):
@@ -73,11 +72,11 @@ def startConnectionThread(connectionSocket, addr):
 
 	except IOError:
 		#send resp for file not found
-		connectionSocket.send("HTTP/1.1 404 File Not Found\r\n")
-		#connectionSocket.send("<! DOCTYPE><title><body><h1>404 File Not Found</h1></body></title>")
-
-	#close client socket
-	connectionSocket.close()
+		connectionSocket.send("HTTP/1.1 404 Not Found\r\n\r\n")
+		connectionSocket.send("<html><head></head><body><h1>404 Not Found</h1></body></html>\r\n")
+		
+		#close client socket
+		connectionSocket.close()
 	
 
 
