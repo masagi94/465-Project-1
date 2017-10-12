@@ -30,12 +30,11 @@ from threading import *
 #globals
 threadArray = []
 portNumber = 0 #simply to instantiate the value, it will be overwritten later
-nextPortNumber = 0
 
 
-'''
-Sets up the main thread, adds it to the array of threads
-'''
+
+# Sets up the main thread, adds it to the array of threads
+
 def main():
 	
 	mainThread = Thread(target = startServer, name = 'ServerThread')
@@ -56,7 +55,7 @@ def main():
 
 def startServer():
 
-	#prepare socket
+	# Prepares socket
 	serverSocket = socket(AF_INET, SOCK_STREAM)
 
 	# Listens in to the specified port number
@@ -68,20 +67,26 @@ def startServer():
 	print("Press CTRL + c to exit.\n")
 
 
+	'''
+		Creates new threads as new requests come in. The accept() function returns a new address and a new port number for the
+		connection that the kernel chooses. The two print statements print out the new port number, and the amount of threads created,
+		confirming proper multithreading.
+	'''
 	while True:
-		#establish connection
+		#Establishes a connection. accept() sets up the connection on a new port chosen by the kernel.
 		connectionSocket, addr = serverSocket.accept()
-		print >>sys.stderr, 'Connection from "Ip address", "New port number" :', addr
-		#serverSocket.bind((gethostname(), portNumber+1))
+		print >>sys.stderr, 'Ip address, New port number :\n', addr
+
 		threadName = "Thread - " + str(len(threadArray))
 		newThread = Thread(target = startConnectionThread, name = (threadName), args = [connectionSocket, addr])
 
 
 		threadArray.append(newThread)
-		print("Number of threads:%d") %len(threadArray)
+		print("Number of threads:%d\n\n") %len(threadArray)
 		newThread.start()
 
 	serverSocket.close()
+
 
 def startConnectionThread(connectionSocket, addr):
 	try:
