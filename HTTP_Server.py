@@ -1,6 +1,6 @@
 #Hamza Tanveer
 #Mauricio Salazar Giraldo
-#Fall 2017 - ECE 465 Project 1
+#Fall 2017-ECE 465 Project 1
 
 import sys
 
@@ -51,6 +51,7 @@ def startServer():
 
 
 		threadArray.append(newThread)
+		print("%s") %threadName
 		newThread.start()
 
 	serverSocket.close()
@@ -80,12 +81,12 @@ def startConnectionThread(connectionSocket, addr):
 	
 
 
-	if len(sys.argv) == 2: #take in 2 command line args
-		portNumber = int(sys.argv[1]) #argv[1] b/c arg 0 and arg 1
-		print("\nServer port: %d") % portNumber
-	else:
-		print '\n Error:     Missing port number.\n Usage:     HTTP_Server.py <port number>'
-		sys.exit(0)
+if len(sys.argv) == 2: #take in 2 command line args
+	portNumber = int(sys.argv[1]) #argv[1] b/c arg 0 and arg 1
+	print("\nServer port: %d") % portNumber
+else:
+	print '\n Error:     Missing port number.\n Usage:     HTTP_Server.py <port number>'
+	sys.exit(0)
 
 
 
