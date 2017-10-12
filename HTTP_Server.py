@@ -9,7 +9,7 @@ from threading import *
 
 #globals
 threadArray = []
-portNumber = 0
+portNumber = 0 #simply to instantiate the value, it will be overwritten later
 
 def main():
 	
@@ -80,12 +80,12 @@ def startConnectionThread(connectionSocket, addr):
 	
 
 
-if len(sys.argv) == 2: #take in 2 command line args
-	portNumber = int(sys.argv[1]) #argv[1] b/c arg 0 and arg 1
-	print("\nServer port: %d") % portNumber
-else:
-	print '\n Error:     Missing port number.\n Usage:     HTTP_Server.py <port number>'
-	sys.exit(0)
+	if len(sys.argv) == 2: #take in 2 command line args
+		portNumber = int(sys.argv[1]) #argv[1] b/c arg 0 and arg 1
+		print("\nServer port: %d") % portNumber
+	else:
+		print '\n Error:     Missing port number.\n Usage:     HTTP_Server.py <port number>'
+		sys.exit(0)
 
 
 
